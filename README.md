@@ -1,9 +1,42 @@
-# pkg_name
+# @uppercod/exp-route
 
-bla bla....
+Path expression syntax for capturing parameters.
 
-## install
+## Install
+
+```bash
+npm install @uppercod/exp-route
+```
+
+## Syntax
+
+### fixed route
 
 ```
-npm install pkg_name
+/folder1/folrder2
+```
+
+### parameter path
+
+```
+/folder1/{folder}
+```
+
+### optional parameter path
+
+```
+/folder1/[folder]
+```
+
+### spread parameter path
+
+```
+/folder1/[...folder]
+/folder1/{...folder}
+```
+
+## Api
+
+```ts
+
 ```

@@ -3,7 +3,7 @@ import builtins from "builtin-modules";
 import pkg from "./package.json";
 
 export default {
-    input: ["./src/index.js"],
+    input: ["./src/exp-route.js"],
     output: [
         {
             dir: "cjs",
@@ -11,7 +11,7 @@ export default {
             sourcemap: true,
         },
         {
-            dir: "esm",
+            dir: "./",
             format: "esm",
             sourcemap: true,
         },
