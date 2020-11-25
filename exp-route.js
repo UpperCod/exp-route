@@ -12,13 +12,14 @@ function pathToRegExp(path) {
     const params = [];
     const regFolders = path.split(/\//g).map((folder) => {
         if (!folder) return "";
-        const [, type, spread, param] = folder.match(
-            /([\{\[]){0,1}(\.\.\.){0,1}(\w+)([\}\]]){0,1}/
+        const [, hash = "", type, spread, param] = folder.match(
+            /(#){0,1}([\{\[]){0,1}(\.\.\.){0,1}(\w+)([\}\]]){0,1}/
         );
         if (type == "{" || type == "[") {
             params.push(param);
             const wildcard = type == "[" ? "*" : "+";
-            const slash = "(?:/)" + (type == "[" ? "{0,1}" : "{1}");
+            const slash =
+                (hash ? `(?:/#|#)` : "(?:/)") + (type == "[" ? "{0,1}" : "{1}");
             return spread
                 ? `${slash}(.${wildcard})`
                 : `${slash}([^\/]${wildcard})`;
