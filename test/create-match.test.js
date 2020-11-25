@@ -24,3 +24,13 @@ test("createMatch 3", (t) => {
     t.deepEqual(match("/folder"), { param: "" });
     t.deepEqual(match("/"), undefined);
 });
+
+test("createMatch 4", (t) => {
+    const match = createMatch("/folder/#[...param]");
+
+    t.deepEqual(match("/folder/#users"), { param: "users" });
+
+    t.deepEqual(match("/folder#users"), { param: "users" });
+
+    t.deepEqual(match("/#users"), undefined);
+});

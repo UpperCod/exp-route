@@ -29,4 +29,9 @@ test("pathToRegExp", (t) => {
         /^\/folder(?:\/){1}(.+)$/,
         ["folder"],
     ]);
+
+    t.deepEqual(pathToRegExp("/folder/#{...folder}"), [
+        /^\/folder(?:\/#|#){1}(.+)$/,
+        ["folder"],
+    ]);
 });
