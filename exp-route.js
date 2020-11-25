@@ -1,10 +1,5 @@
 /**
  *
- * @param {string} str
- */
-const ignore = (str) => str.replace(/([.+^()\-:])/g, "\\$1");
-/**
- *
  * @param {string} path
  * @return {[RegExp,string[]]}
  */
@@ -19,16 +14,22 @@ function pathToRegExp(path) {
             params.push(param);
             const wildcard = type == "[" ? "*" : "+";
             const slash =
-                (hash ? `(?:/#|#)` : "(?:/)") + (type == "[" ? "{0,1}" : "{1}");
+                (hash ? "(?:/#|#)" : "(?:/)") + (type == "[" ? "{0,1}" : "{1}");
             return spread
                 ? `${slash}(.${wildcard})`
-                : `${slash}([^\/]${wildcard})`;
+                : `${slash}([^\/#]${wildcard})`;
         } else {
-            return "/" + ignore(folder);
+            return (folder[0] == "#" ? "(?:/#|#)" : "/") + ignore(folder);
         }
     });
     return [RegExp("^" + regFolders.join("") + "$"), params];
 }
+
+/**
+ *
+ * @param {string} str
+ */
+const ignore = (str) => str.replace(/([.+^()\-:])/g, "\\$1");
 
 /**
  *
