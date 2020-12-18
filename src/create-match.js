@@ -1,5 +1,5 @@
-import { pathToRegExp } from "./path-to-regexp";
-import { getParts } from "./search-params";
+import { pathToRegExp } from "./path-to-regexp.js";
+import { getParts } from "./search-params.js";
 /**
  *
  * @param {string} regPath

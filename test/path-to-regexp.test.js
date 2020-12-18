@@ -1,5 +1,5 @@
 import test from "ava";
-import { pathToRegExp, ignore } from "../src/path-to-regexp";
+import { pathToRegExp, ignore } from "../src/path-to-regexp.js";
 
 test("prepare", (t) => {
     t.is(ignore(":-().+"), `\\:\\-\\(\\)\\.\\+`);

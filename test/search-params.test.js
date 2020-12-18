@@ -1,5 +1,5 @@
 import test from "ava";
-import { searchParams, getParts } from "../src/search-params";
+import { searchParams, getParts } from "../src/search-params.js";
 
 test("getParts", (t) => {
     const partBefore = "folder/folder/folder";

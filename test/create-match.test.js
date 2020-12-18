@@ -1,5 +1,5 @@
 import test from "ava";
-import { createMatch } from "../src/create-match";
+import { createMatch } from "../src/create-match.js";
 
 test("createMatch 1", (t) => {
     const match = createMatch("/folder/{param}/folder");

@@ -1,3 +1,7 @@
+'use strict';
+
+Object.defineProperty(exports, '__esModule', { value: true });
+
 /**
  *
  * @param {string} path
@@ -81,5 +85,7 @@ function createMatch(regPath) {
     return match;
 }
 
-export { createMatch, getParts, searchParams };
+exports.createMatch = createMatch;
+exports.getParts = getParts;
+exports.searchParams = searchParams;
 //# sourceMappingURL=exp-route.js.map
