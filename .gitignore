@@ -1,4 +1,4 @@
 /node_modules
-/esm
-/cjs
+/*.cjs
+/*.cjs.map
 /package-lock.json
