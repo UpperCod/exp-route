@@ -1,4 +1,3 @@
 /node_modules
 /*.cjs
 /*.cjs.map
-/package-lock.json

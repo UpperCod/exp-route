@@ -1,20 +1,10 @@
-import renameExtensions from "@betit/rollup-plugin-rename-extensions";
-
 export default {
     input: ["./src/exp-route.js"],
     output: [
         {
-            dir: "./",
+            file: "./exp-route.cjs",
             format: "cjs",
-            sourcemap: true,
+            sourcemap: false,
         },
-    ],
-    plugins: [
-        renameExtensions({
-            include: ["**/*.js"],
-            mappings: {
-                ".js": ".cjs",
-            },
-        }),
     ],
 };
