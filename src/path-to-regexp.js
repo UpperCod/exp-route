@@ -22,7 +22,7 @@ export function pathToRegExp(path) {
             return (folder[0] == "#" ? "(?:/#|#)" : "/") + ignore(folder);
         }
     });
-    return [RegExp("^" + regFolders.join("") + "$"), params];
+    return [RegExp("^" + (regFolders.join("") || "(?:/){0,1}") + "$"), params];
 }
 
 /**

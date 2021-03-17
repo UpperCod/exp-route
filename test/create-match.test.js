@@ -1,6 +1,13 @@
 import test from "ava";
 import { createMatch } from "../src/create-match.js";
 
+test("rootPath", (t) => {
+    const match = createMatch("/");
+    t.deepEqual(match("/"), {});
+    t.deepEqual(match(""), {});
+    t.is(match("/any"), undefined);
+});
+
 test("createMatch 1", (t) => {
     const match = createMatch("/folder/{param}/folder");
 
