@@ -1,7 +1,7 @@
 {
     "name": "@uppercod/exp-route",
     "type": "module",
-    "version": "1.2.4",
+    "version": "1.2.5",
     "description": "exp-route, designed to compare routes on the client based on simple expressions",
     "main": "./exp-route.cjs",
     "module": "./src/exp-route.js",
