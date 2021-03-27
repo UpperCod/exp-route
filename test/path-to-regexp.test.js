@@ -43,7 +43,8 @@ test("pathToRegExp", (t) => {
     ]);
 
     t.deepEqual(pathToRegExp("/folder/#{folder}"), [
-        /^\/folder(?:(?:\/){0,1}#(?:\/){0,1}){1}(.+)$/,
+        /^\/folder(?:(?:\/){0,1}#(?:\/){0,1}){1}([^/#]+)$/,
+
         ["folder"],
     ]);
 
