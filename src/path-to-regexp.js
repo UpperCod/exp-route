@@ -1,4 +1,5 @@
-const HASH = "(?:/#|#)";
+const HASH = "(?:(?:/){0,1}#(?:/){0,1})";
+const SLASH = "(?:/)";
 /**
  *
  * @param {string} path
@@ -18,7 +19,7 @@ export function pathToRegExp(path) {
                 params.push(param);
                 const wildcard = type == "[" ? "*" : "+";
                 const slash =
-                    (hash ? HASH : "(?:/)") + (type == "[" ? "{0,1}" : "{1}");
+                    (hash ? HASH : SLASH) + (type == "[" ? "{0,1}" : "{1}");
                 return spread
                     ? `${slash}(.${wildcard})`
                     : `${slash}([^\/#]${wildcard})`;
@@ -30,11 +31,10 @@ export function pathToRegExp(path) {
             }
         })
         .join("");
-
     return [
         RegExp(
             (!regFolders.indexOf(HASH) ? "" : "^") +
-                (regFolders || "(?:/){0,1}") +
+                (regFolders || SLASH + "{0,1}") +
                 "$"
         ),
         params,

@@ -6,7 +6,7 @@ test("prepare", (t) => {
 });
 
 test("pathToRegExp", (t) => {
-    t.deepEqual(pathToRegExp("/#"), [/(?:\/#|#)$/, []]);
+    t.deepEqual(pathToRegExp("/#/"), [/(?:(?:\/){0,1}#(?:\/){0,1})$/, []]);
 
     t.deepEqual(pathToRegExp("/folder"), [/^\/folder$/, []]);
 
@@ -32,8 +32,23 @@ test("pathToRegExp", (t) => {
         ["folder"],
     ]);
 
+    t.deepEqual(pathToRegExp("/folder/#[folder]"), [
+        /^\/folder(?:(?:\/){0,1}#(?:\/){0,1}){0,1}([^/#]*)$/,
+        ["folder"],
+    ]);
+
+    t.deepEqual(pathToRegExp("/folder/#{folder}"), [
+        /^\/folder(?:(?:\/){0,1}#(?:\/){0,1}){1}([^/#]+)$/,
+        ["folder"],
+    ]);
+
+    t.deepEqual(pathToRegExp("/folder/#{folder}"), [
+        /^\/folder(?:(?:\/){0,1}#(?:\/){0,1}){1}(.+)$/,
+        ["folder"],
+    ]);
+
     t.deepEqual(pathToRegExp("/folder/#{...folder}"), [
-        /^\/folder(?:\/#|#){1}(.+)$/,
+        /^\/folder(?:(?:\/){0,1}#(?:\/){0,1}){1}(.+)$/,
         ["folder"],
     ]);
 });
