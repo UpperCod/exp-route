@@ -31,10 +31,14 @@ export function pathToRegExp(path) {
             }
         })
         .join("");
+    // Hash paths escape the path start requirement
+    const isHash = !regFolders.indexOf(HASH);
     return [
         RegExp(
-            (!regFolders.indexOf(HASH) ? "" : "^") +
+            (isHash ? "" : "^") +
                 (regFolders || SLASH + "{0,1}") +
+                // closed paths are only enabled out of hash
+                (!isHash && path != "/" && path.endsWith("/") ? "/" : "") +
                 "$"
         ),
         params,

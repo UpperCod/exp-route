@@ -6,6 +6,8 @@ test("prepare", (t) => {
 });
 
 test("pathToRegExp", (t) => {
+    t.deepEqual(pathToRegExp("/router/"), [/^\/router\/$/, []]);
+
     t.deepEqual(pathToRegExp("/#/"), [/(?:(?:\/){0,1}#(?:\/){0,1})$/, []]);
 
     t.deepEqual(pathToRegExp("/folder"), [/^\/folder$/, []]);
