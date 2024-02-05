@@ -36,5 +36,46 @@
     "prettier": {
         "tabWidth": 4,
         "singleQuote": false
+    },
+    "main": "src/exp-route.js",
+    "module": "src/exp-route.js",
+    "types": "types/exp-route.d.ts",
+    "exports": {
+        "./create-match": {
+            "default": "./src/create-match.js",
+            "types": "./types/create-match.d.ts"
+        },
+        "./exp-route": {
+            "default": "./src/exp-route.js",
+            "types": "./types/exp-route.d.ts"
+        },
+        "./path-to-regexp": {
+            "default": "./src/path-to-regexp.js",
+            "types": "./types/path-to-regexp.d.ts"
+        },
+        "./search-params": {
+            "default": "./src/search-params.js",
+            "types": "./types/search-params.d.ts"
+        },
+        ".": {
+            "default": "./src/exp-route.js",
+            "types": "./types/exp-route.d.ts"
+        }
+    },
+    "typesVersions": {
+        "*": {
+            "create-match": [
+                "types/create-match.d.ts"
+            ],
+            "exp-route": [
+                "types/exp-route.d.ts"
+            ],
+            "path-to-regexp": [
+                "types/path-to-regexp.d.ts"
+            ],
+            "search-params": [
+                "types/search-params.d.ts"
+            ]
+        }
     }
 }
