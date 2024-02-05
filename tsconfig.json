@@ -1,5 +1,5 @@
 {
-    "src": "./src/**/*",
+    "include": ["src/**/*"],
     "compilerOptions": {
         "target": "ESNext",
         "module": "NodeNext",

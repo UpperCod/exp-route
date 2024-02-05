@@ -8,7 +8,7 @@
     },
     "scripts": {
         "test": "ava",
-        "types":"tsc",
+        "types": "tsc",
         "prepare": "npm test"
     },
     "repository": {
