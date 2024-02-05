@@ -8,7 +8,7 @@ test("prepare", (t) => {
 test("pathToRegExp", (t) => {
     t.deepEqual(pathToRegExp("/router/"), [/^\/router\/$/, []]);
 
-    t.deepEqual(pathToRegExp("/#/"), [/(?:(?:\/){0,1}#(?:\/){0,1})$/, []]);
+    t.deepEqual(pathToRegExp("/#/"), [/(?:(?:\/)?#(?:\/)?)$/, []]);
 
     t.deepEqual(pathToRegExp("/folder"), [/^\/folder$/, []]);
 
@@ -20,12 +20,12 @@ test("pathToRegExp", (t) => {
     ]);
 
     t.deepEqual(pathToRegExp("/folder/[folder]"), [
-        /^\/folder(?:\/){0,1}([^/#]*)$/,
+        /^\/folder(?:\/)?([^/#]*)$/,
         ["folder"],
     ]);
 
     t.deepEqual(pathToRegExp("/folder/[...folder]"), [
-        /^\/folder(?:\/){0,1}(.*)$/,
+        /^\/folder(?:\/)?(.*)$/,
         ["folder"],
     ]);
 
@@ -35,23 +35,23 @@ test("pathToRegExp", (t) => {
     ]);
 
     t.deepEqual(pathToRegExp("/folder/#[folder]"), [
-        /^\/folder(?:(?:\/){0,1}#(?:\/){0,1}){0,1}([^/#]*)$/,
+        /^\/folder(?:(?:\/)?#(?:\/)?)?([^/#]*)$/,
         ["folder"],
     ]);
 
     t.deepEqual(pathToRegExp("/folder/#{folder}"), [
-        /^\/folder(?:(?:\/){0,1}#(?:\/){0,1}){1}([^/#]+)$/,
+        /^\/folder(?:(?:\/)?#(?:\/)?){1}([^/#]+)$/,
         ["folder"],
     ]);
 
     t.deepEqual(pathToRegExp("/folder/#{folder}"), [
-        /^\/folder(?:(?:\/){0,1}#(?:\/){0,1}){1}([^/#]+)$/,
+        /^\/folder(?:(?:\/)?#(?:\/)?){1}([^/#]+)$/,
 
         ["folder"],
     ]);
 
     t.deepEqual(pathToRegExp("/folder/#{...folder}"), [
-        /^\/folder(?:(?:\/){0,1}#(?:\/){0,1}){1}(.+)$/,
+        /^\/folder(?:(?:\/)?#(?:\/)?){1}(.+)$/,
         ["folder"],
     ]);
 });
