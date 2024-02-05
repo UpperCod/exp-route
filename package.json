@@ -9,7 +9,8 @@
     "scripts": {
         "test": "ava",
         "types": "tsc",
-        "prepare": "npm test"
+        "exports": "exports \"src/**/*\" \"types/**/*\" --main exp-route",
+        "prepare": "npm run types && npm test && npm run exports"
     },
     "repository": {
         "type": "git",
