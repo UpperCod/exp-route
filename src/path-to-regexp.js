@@ -1,4 +1,4 @@
-const HASH = "(?:(?:/){0,1}#(?:/){0,1})";
+const HASH = "(?:(?:/)?#(?:/)?)";
 const SLASH = "(?:/)";
 /**
  *
@@ -7,19 +7,26 @@ const SLASH = "(?:/)";
  */
 export function pathToRegExp(path) {
     const params = [];
-    const regFolders = path
-        .replace(/#(\/){0,1}/, "/#")
+    const folders = path
+        .replace(/#(\/)?/, "/#")
         .split(/\//g)
-        .map((folder) => {
-            if (!folder) return "";
+        .filter((value) => value);
+
+    const regFolders = folders
+        .map((folder, index) => {
+            if (folder === "*")
+                return `${SLASH}${
+                    index === folders.length - 1 ? "?" : ""
+                }[^\/]${index === folders.length - 1 ? "*" : "+"}`;
+            if (folder === "...") return `${SLASH}?.*`;
             const [, hash = "", type, spread, param] = folder.match(
-                /(#){0,1}([\{\[]){0,1}(\.\.\.){0,1}(\w*)([\}\]]){0,1}/
+                /(#)?([\{\[])?(\.\.\.)?(\w*)([\}\]])?/
             );
             if (type == "{" || type == "[") {
                 params.push(param);
                 const wildcard = type == "[" ? "*" : "+";
                 const slash =
-                    (hash ? HASH : SLASH) + (type == "[" ? "{0,1}" : "{1}");
+                    (hash ? HASH : SLASH) + (type == "[" ? "?" : "{1}");
                 return spread
                     ? `${slash}(.${wildcard})`
                     : `${slash}([^\/#]${wildcard})`;
@@ -36,7 +43,7 @@ export function pathToRegExp(path) {
     return [
         RegExp(
             (isHash ? "" : "^") +
-                (regFolders || SLASH + "{0,1}") +
+                (regFolders || SLASH + "?") +
                 // closed paths are only enabled out of hash
                 (!isHash && path != "/" && path.endsWith("/") ? "/" : "") +
                 "$"
