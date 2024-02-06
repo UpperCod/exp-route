@@ -5,7 +5,7 @@
 export const getParts = (path) => path.split(/(\?.*)/);
 /**
  * @param {string} search
- * @param {Object} [props]
+ * @param {import("./exp-route.js").Params} [props]
  */
 export function searchParams(search, props = {}) {
     search.replace(
