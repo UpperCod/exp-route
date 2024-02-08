@@ -1,7 +1,7 @@
 {
     "name": "@uppercod/exp-route",
     "type": "module",
-    "version": "1.4.1",
+    "version": "1.4.2",
     "description": "exp-route, designed to compare routes on the client based on simple expressions",
     "publishConfig": {
         "access": "public"
