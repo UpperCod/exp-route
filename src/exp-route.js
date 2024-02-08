@@ -6,6 +6,5 @@ export * from "./search-params.js";
  */
 
 /**
- * @template {Params} T
- * @typedef { (path:string)=>T|undefined} Match
+ * @typedef {(path:string)=>Params|undefined} Match
  */
